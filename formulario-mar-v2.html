@@ -1129,7 +1129,7 @@ function submitForm() {
   const WEBHOOK_URL = 'https://vpexcontato.app.n8n.cloud/webhook/0d9a1a1b-d40f-4049-bcb7-02157e6ee237';
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
     body: JSON.stringify(payload)
   }).catch(() => {
     try {
@@ -1199,7 +1199,7 @@ document.addEventListener('keydown', function(e) {
     failed.forEach((lead, i) => {
       fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
         body: JSON.stringify({ ...lead, retried: true })
       }).then(() => {
         failed.splice(i, 1);
