@@ -1208,6 +1208,21 @@ document.addEventListener('keydown', function(e) {
   label.style.cssText = 'color:#CCFF00;font-size:11px;font-weight:700;letter-spacing:1px;margin-right:4px;';
   panel.appendChild(label);
 
+  // Cover button
+  const capaBtn = document.createElement('button');
+  capaBtn.textContent = 'CAPA';
+  capaBtn.style.cssText = 'height:32px;padding:0 10px;border-radius:8px;border:1px solid #CCFF00;background:#0A0A0A;color:#CCFF00;font-size:11px;font-weight:700;cursor:pointer;margin-right:4px;';
+  capaBtn.addEventListener('click', () => {
+    document.getElementById('coverPage').style.display = '';
+    document.getElementById('formWrap').classList.remove('active');
+    document.getElementById('thankyouPage').classList.remove('active');
+    window.scrollTo({ top: 0 });
+    panel.querySelectorAll('button').forEach(b => { b.style.background = '#0A0A0A'; b.style.color = '#CCFF00'; b.style.borderColor = '#333'; });
+    capaBtn.style.background = '#CCFF00';
+    capaBtn.style.color = '#000';
+  });
+  panel.appendChild(capaBtn);
+
   for (let i = 1; i <= 9; i++) {
     const btn = document.createElement('button');
     btn.textContent = i;
