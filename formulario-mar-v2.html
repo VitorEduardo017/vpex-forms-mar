@@ -938,16 +938,35 @@ body {
       </div>
     </div>
 
-    <!-- STEP 9: MOOK FINAL -->
+    <!-- STEP 9: DECISOR -->
     <div class="step" id="step-9">
       <div class="step-content">
-        <div class="step-number">09 → 09</div>
-        <div class="step-question">98% PREENCHIDO! <span class="step-name-recall" id="nameRecall9"></span>, agende agora uma breve reunião com um de nossos especialistas ↓</div>
+        <div class="step-number">09 → 10</div>
+        <div class="step-question">Tem alguém que toma decisões junto com você?</div>
+        <div class="step-hint">Para a reunião ser aproveitada ao máximo, é importante ter todos os decisores presentes.</div>
+        <div class="options" id="opt-decisor">
+          <div class="option" data-value="Só eu" onclick="selectOption(this)"><div class="option-key">A</div><div class="option-text">Só eu — tomo as decisões sozinho</div></div>
+          <div class="option" data-value="Eu e cônjuge" onclick="selectOption(this)"><div class="option-key">B</div><div class="option-text">Eu e minha esposa / marido</div></div>
+          <div class="option" data-value="Eu e sócio" onclick="selectOption(this)"><div class="option-key">C</div><div class="option-text">Eu e meu sócio</div></div>
+          <div class="option" data-value="Outro decisor" onclick="selectOption(this)"><div class="option-key">D</div><div class="option-text">Tem outra pessoa importante nessa decisão</div></div>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn btn-back" onclick="goBack()">←</button>
+        <button class="btn btn-primary" id="btn-9" disabled onclick="nextFromOption()">CONTINUAR</button>
+      </div>
+    </div>
+
+    <!-- STEP 10: MOOK FINAL -->
+    <div class="step" id="step-10">
+      <div class="step-content">
+        <div class="step-number">10 → 10</div>
+        <div class="step-question">100% PREENCHIDO! <span class="step-name-recall" id="nameRecall10"></span>, agende agora uma breve reunião com um de nossos especialistas ↓</div>
         <div class="step-hint">A reunião é rápida — 20 minutos. Você sai com um diagnóstico personalizado da sua garagem.</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
-        <button class="btn btn-submit" id="btn-9" onclick="submitForm()">AGENDAR REUNIÃO GRATUITA →</button>
+        <button class="btn btn-submit" id="btn-10" onclick="submitForm()">AGENDAR REUNIÃO GRATUITA →</button>
       </div>
     </div>
 
@@ -966,8 +985,6 @@ body {
     <p class="ty-text">Em alguns minutos vou analisar as informações da sua garagem e entrar em contato via WhatsApp.</p>
     <div class="ty-alert">⚡ Se quiser acelerar, agende direto a reunião:</div>
     <a href="https://calendly.com/vitorduducontato/30min" target="_blank" class="ty-calendly">AGENDAR REUNIÃO →</a>
-    <div class="ty-video">🎬 Vídeo do Método Alta Rotação (inserir iframe aqui)</div>
-    <p class="ty-note">Enquanto isso, assista como o M.A.R. funciona na prática.</p>
     <div class="footer">© 2026 <a href="https://vpex.solutions">VPEX Solutions</a> · Todos os direitos reservados.</div>
   </div>
 </div>
@@ -1006,7 +1023,7 @@ body {
 <script>
 // ====== STATE ======
 let currentStep = 1;
-const totalSteps = 9;
+const totalSteps = 10;
 const formData = {};
 const stepTimestamps = {};
 let inactivityTimer = null;
@@ -1081,19 +1098,20 @@ function showStep(n) {
   // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Name recall on steps 8 and 9
+  // Name recall on steps 8 and 10
   if (n === 8 && formData.nome) {
     const el = document.getElementById('nameRecall8');
     if (el) el.textContent = formData.nome.split(' ')[0];
   }
-  if (n === 9 && formData.nome) {
-    const el = document.getElementById('nameRecall9');
+  if (n === 10 && formData.nome) {
+    const el = document.getElementById('nameRecall10');
     if (el) el.textContent = formData.nome.split(' ')[0];
   }
 
   // Pixel events per step
   if (typeof fbq !== 'undefined') {
     if (n === 5) fbq('track', 'ViewContent', { content_name: 'MAR-Diagnostico-MeioForm' });
+    if (n === 10) fbq('track', 'ViewContent', { content_name: 'MAR-Diagnostico-FinalStep' });
   }
 }
 
@@ -1106,7 +1124,7 @@ function updateProgress() {
   text.textContent = currentStep + ' de ' + totalSteps;
 
   // Encouragement messages
-  const msgs = { 3: 'Bom começo!', 5: 'Metade do caminho!', 7: 'Quase lá!', 9: 'Última pergunta!' };
+  const msgs = { 3: 'Bom começo!', 5: 'Metade do caminho!', 8: 'Quase lá!', 9: 'Última pergunta!' };
   if (msgs[currentStep]) {
     enc.textContent = msgs[currentStep];
     enc.classList.add('show');
@@ -1263,7 +1281,7 @@ function submitForm() {
   if (document.getElementById('hp-email').value !== '') return;
 
   submitLocked = true;
-  const btn = document.getElementById('btn-9');
+  const btn = document.getElementById('btn-10');
   btn.textContent = 'ENVIANDO...';
   btn.disabled = true;
 
@@ -1348,7 +1366,7 @@ document.addEventListener('keydown', function(e) {
 
 // ====== KEYBOARD SHORTCUTS (A-F) ======
 document.addEventListener('keydown', function(e) {
-  if (currentStep < 4 || currentStep === 9) return; // Only for option steps
+  if (currentStep < 4 || currentStep === 10) return; // Only for option steps
   const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5 };
   const idx = keyMap[e.key.toLowerCase()];
   if (idx === undefined) return;
@@ -1360,7 +1378,7 @@ document.addEventListener('keydown', function(e) {
     // Auto-advance after short delay
     setTimeout(() => {
       const btn = activeStep.querySelector('.btn-primary:not(:disabled), .btn-submit:not(:disabled)');
-      if (btn && currentStep < 9) btn.click();
+      if (btn && currentStep < 10) btn.click();
     }, 300);
   }
 });
@@ -1406,7 +1424,7 @@ document.addEventListener('keydown', function(e) {
   });
   panel.appendChild(capaBtn);
 
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 1; i <= 10; i++) {
     const btn = document.createElement('button');
     btn.textContent = i;
     btn.dataset.step = i;
