@@ -1108,10 +1108,9 @@ function showStep(n) {
     if (el) el.textContent = formData.nome.split(' ')[0];
   }
 
-  // Pixel events per step
+  // Pixel events — every step for full funnel tracking
   if (typeof fbq !== 'undefined') {
-    if (n === 5) fbq('track', 'ViewContent', { content_name: 'MAR-Diagnostico-MeioForm' });
-    if (n === 10) fbq('track', 'ViewContent', { content_name: 'MAR-Diagnostico-FinalStep' });
+    fbq('track', 'ViewContent', { content_name: 'MAR-Step-' + n, content_category: 'diagnostico-mar' });
   }
 }
 
