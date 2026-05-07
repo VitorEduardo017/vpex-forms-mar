@@ -1028,6 +1028,7 @@ const formData = {};
 const stepTimestamps = {};
 let inactivityTimer = null;
 let submitLocked = false;
+let partialLeadSent = false;
 
 // ====== UTM GRABBER ======
 const urlParams = new URLSearchParams(window.location.search);
@@ -1191,6 +1192,13 @@ function nextFromInput(field) {
     inp.classList.remove('error');
     if (err) err.classList.remove('show');
     formData.whatsapp = val;
+
+    // Salva lead parcial assim que temos nome + WhatsApp
+    if (!partialLeadSent) {
+      partialLeadSent = true;
+      formData.lead_type = 'PARCIAL';
+      sendPartialLead();
+    }
   }
 
   if (field === 'instagram') {
