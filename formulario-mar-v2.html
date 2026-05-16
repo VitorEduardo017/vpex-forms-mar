@@ -1006,7 +1006,7 @@ body {
       Entendemos que o investimento em gestão de tráfego pode não estar no orçamento agora.<br><br>
       <strong>Por isso, criamos um grupo exclusivo</strong> com conteúdos gratuitos sobre como girar estoque usando estratégias orgânicas e de baixo custo.
     </p>
-    <a href="https://wa.me/5564994004042?text=Oi%20Vitor%2C%20vim%20pelo%20diagn%C3%B3stico%20e%20quero%20saber%20mais%20sobre%20o%20M%C3%A9todo%20MAR" target="_blank" class="result-btn">ENTRAR NO GRUPO GRATUITO →</a>
+    <a href="https://chat.whatsapp.com/KkcHakGZcgG652rWTuQWXO" target="_blank" class="result-btn">ENTRAR NO GRUPO GRATUITO →</a>
     <p class="ty-note">Quando estiver pronto para o próximo nível, estaremos aqui.</p>
     <div class="footer">© 2026 <a href="https://vpex.solutions">VPEX Solutions</a> · Todos os direitos reservados.</div>
   </div>
@@ -1285,7 +1285,7 @@ function sendPartialLead() {
   };
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
     body: JSON.stringify(payload)
   }).catch(() => {});
 }
@@ -1334,7 +1334,7 @@ function submitForm() {
   const WEBHOOK_URL = 'https://vpexcontato.app.n8n.cloud/webhook/0d9a1a1b-d40f-4049-bcb7-02157e6ee237';
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
     body: JSON.stringify(payload)
   }).catch(() => {
     try {
@@ -1520,7 +1520,7 @@ document.addEventListener('keydown', function(e) {
     const promises = failed.map(lead =>
       fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
         body: JSON.stringify({ ...lead, retried: true })
       }).then(() => true).catch(() => false)
     );
