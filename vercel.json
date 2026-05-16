@@ -1,6 +1,9 @@
 {
   "routes": [
-    { "src": "/", "dest": "/formulario-mar-v2.html" }
+    { "src": "/", "dest": "/formulario-mar-v2.html" },
+    { "src": "/obrigado", "dest": "/formulario-mar-v2.html" },
+    { "src": "/nok", "dest": "/formulario-mar-v2.html" },
+    { "src": "/monok", "dest": "/formulario-mar-v2.html" }
   ],
   "headers": [
     {

@@ -11,7 +11,7 @@
 <meta property="og:description" content="Descubra o que está travando o giro da sua garagem. Diagnóstico gratuito e personalizado.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vpex.solutions/diagnostico">
-<meta property="og:image" content="https://vpex.solutions/og-diagnostico.jpg">
+<meta property="og:image" content="https://vpex-forms-mar.vercel.app/og-diagnostico.png">
 <meta property="og:locale" content="pt_BR">
 
 <!-- Twitter Card -->
@@ -833,6 +833,7 @@ body {
         <div class="step-hint">Instagram da loja. Se não tiver, pode pular.</div>
         <div class="input-wrap">
           <input class="input-field" id="inp-instagram" type="text" placeholder="@suagaragem" maxlength="40">
+          <div class="nudge" id="nudge-3">↑ Se não tiver, pode deixar em branco.</div>
         </div>
       </div>
       <div class="btn-wrap">
@@ -853,6 +854,7 @@ body {
           <div class="option" data-value="Gerente" onclick="selectOption(this)"><div class="option-key">C</div><div class="option-text">Gerente da Loja</div></div>
           <div class="option" data-value="Vendedor" onclick="selectOption(this)"><div class="option-key">D</div><div class="option-text">Vendedor</div></div>
         </div>
+        <div class="nudge" id="nudge-4">↑ Selecione a opção que melhor te descreve.</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
@@ -874,6 +876,7 @@ body {
           <div class="option" data-value="500k-1M" onclick="selectOption(this)"><div class="option-key">E</div><div class="option-text">R$ 500.000 a R$ 1.000.000</div></div>
           <div class="option" data-value="Acima de 1M" onclick="selectOption(this)"><div class="option-key">F</div><div class="option-text">Acima de R$ 1.000.000</div></div>
         </div>
+        <div class="nudge" id="nudge-5">↑ Uma estimativa já ajuda bastante.</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
@@ -894,6 +897,7 @@ body {
           <div class="option" data-value="50-100" onclick="selectOption(this)"><div class="option-key">D</div><div class="option-text">De 50 a 100 carros</div></div>
           <div class="option" data-value="100+" onclick="selectOption(this)"><div class="option-key">E</div><div class="option-text">Mais de 100 carros</div></div>
         </div>
+        <div class="nudge" id="nudge-6">↑ Só uma estimativa já basta.</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
@@ -914,6 +918,7 @@ body {
           <div class="option" data-value="20-50" onclick="selectOption(this)"><div class="option-key">D</div><div class="option-text">20 a 50 por mês</div></div>
           <div class="option" data-value="50+" onclick="selectOption(this)"><div class="option-key">E</div><div class="option-text">Mais de 50 por mês</div></div>
         </div>
+        <div class="nudge" id="nudge-7">↑ Considera a média dos últimos 3 meses.</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
@@ -931,6 +936,7 @@ body {
           <div class="option" data-value="Sim" onclick="selectOption(this)"><div class="option-key">A</div><div class="option-text">Sim, estou disposto</div></div>
           <div class="option" data-value="Não" data-monok="true" onclick="selectOption(this)"><div class="option-key">B</div><div class="option-text">Não, está fora do meu orçamento agora</div></div>
         </div>
+        <div class="nudge" id="nudge-8">↑ Seja transparente — diagnóstico certeiro depende disso.</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
@@ -950,6 +956,7 @@ body {
           <div class="option" data-value="Eu e sócio" onclick="selectOption(this)"><div class="option-key">C</div><div class="option-text">Eu e meu sócio</div></div>
           <div class="option" data-value="Outro decisor" onclick="selectOption(this)"><div class="option-key">D</div><div class="option-text">Tem outra pessoa importante nessa decisão</div></div>
         </div>
+        <div class="nudge" id="nudge-9">↑ Quem mais participa das decisões importantes?</div>
       </div>
       <div class="btn-wrap">
         <button class="btn btn-back" onclick="goBack()">←</button>
@@ -999,7 +1006,7 @@ body {
       Entendemos que o investimento em gestão de tráfego pode não estar no orçamento agora.<br><br>
       <strong>Por isso, criamos um grupo exclusivo</strong> com conteúdos gratuitos sobre como girar estoque usando estratégias orgânicas e de baixo custo.
     </p>
-    <a href="https://chat.whatsapp.com/LINK_DO_GRUPO" target="_blank" class="result-btn">ENTRAR NO GRUPO GRATUITO →</a>
+    <a href="https://wa.me/5564994004042?text=Oi%20Vitor%2C%20vim%20pelo%20diagn%C3%B3stico%20e%20quero%20saber%20mais%20sobre%20o%20M%C3%A9todo%20MAR" target="_blank" class="result-btn">ENTRAR NO GRUPO GRATUITO →</a>
     <p class="ty-note">Quando estiver pronto para o próximo nível, estaremos aqui.</p>
     <div class="footer">© 2026 <a href="https://vpex.solutions">VPEX Solutions</a> · Todos os direitos reservados.</div>
   </div>
@@ -1249,14 +1256,17 @@ function showResultPage(type) {
     document.getElementById('monokPage').classList.add('active');
     const el = document.getElementById('monokName');
     if (el) el.textContent = firstName;
+    history.pushState(null, '', '/monok');
   } else if (type === 'nok') {
     document.getElementById('nokPage').classList.add('active');
     const el = document.getElementById('nokName');
     if (el) el.textContent = firstName;
+    history.pushState(null, '', '/nok');
   }
   window.scrollTo({ top: 0 });
   if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead', { content_name: 'MAR-' + type.toUpperCase(), value: 0, currency: 'BRL' });
+    const reasons = { monok: 'recusou_investimento', nok: 'faturamento_baixo' };
+    fbq('trackCustom', 'LeadDesqualificado', { reason: reasons[type] || type });
   }
 }
 
@@ -1275,7 +1285,7 @@ function sendPartialLead() {
   };
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   }).catch(() => {});
 }
@@ -1309,6 +1319,7 @@ function submitForm() {
   document.getElementById('formWrap').classList.remove('active');
   document.getElementById('thankyouPage').classList.add('active');
   document.getElementById('tyName').textContent = (formData.nome || '').split(' ')[0];
+  history.pushState(null, '', '/obrigado');
   window.scrollTo({ top: 0 });
 
   if (typeof fbq !== 'undefined') {
@@ -1323,7 +1334,7 @@ function submitForm() {
   const WEBHOOK_URL = 'https://vpexcontato.app.n8n.cloud/webhook/0d9a1a1b-d40f-4049-bcb7-02157e6ee237';
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   }).catch(() => {
     try {
@@ -1333,7 +1344,7 @@ function submitForm() {
     } catch(e) {}
   });
 
-  console.log('Lead Data:', payload);
+  if (window.location.hostname === 'localhost') { console.log('Lead Data:', payload); }
 }
 
 // ====== PHONE MASK ======
@@ -1506,16 +1517,17 @@ document.addEventListener('keydown', function(e) {
     const failed = JSON.parse(localStorage.getItem('vpex_failed_leads') || '[]');
     if (failed.length === 0) return;
     const WEBHOOK_URL = 'https://vpexcontato.app.n8n.cloud/webhook/0d9a1a1b-d40f-4049-bcb7-02157e6ee237';
-    failed.forEach((lead, i) => {
+    const promises = failed.map(lead =>
       fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': 'vpex-mar-2026-xK9mQ3pL' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...lead, retried: true })
-      }).then(() => {
-        failed.splice(i, 1);
-        localStorage.setItem('vpex_failed_leads', JSON.stringify(failed));
-      }).catch(() => {});
-    });
+      }).then(() => true).catch(() => false)
+    );
+    Promise.all(promises).then(results => {
+      const remaining = failed.filter((_, i) => !results[i]);
+      localStorage.setItem('vpex_failed_leads', JSON.stringify(remaining));
+    }).catch(() => {});
   } catch(e) {}
 })();
 </script>
